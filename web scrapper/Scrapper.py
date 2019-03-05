@@ -1,11 +1,13 @@
 import requests
 import urllib3
 import re
+import uri
+
 from bs4 import BeautifulSoup
 
 url = 'https://horriblesubs.info/api.php?method=getshows&type=show&showid=1206'
 response = requests.get(url, timeout=5)
-link =  []
+link = []
 
 # scrapes the whole page
 content = BeautifulSoup(response.content, "html.parser")
