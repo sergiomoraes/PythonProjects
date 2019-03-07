@@ -1,7 +1,6 @@
 import requests
 import urllib3
-import re
-import uri
+import torrentool
 
 from bs4 import BeautifulSoup
 
@@ -12,12 +11,11 @@ link = []
 # scrapes the whole page
 content = BeautifulSoup(response.content, "html.parser")
 
-# tries to identify the specific torrent links under the hs-torrent-link class
+# tries to identify the specific links under the rls--link class
 for torrent in content.find_all(class_="rls-link link-1080p"):
-    for link in torrent.find_all('a', attrs={'href': re.compile("^magnet:")}):
-        link.append(link.get('href'))
+    for link in torrent.find_all('a', attrs={'href':re.compile("https")}, title="Torrent Link"):
         print (link)
 
 
 
-
+# transform magnet links into torrent files
