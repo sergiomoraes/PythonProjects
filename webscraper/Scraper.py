@@ -1,6 +1,7 @@
 import requests
 import urllib3
 import torrentool
+import re
 
 from bs4 import BeautifulSoup
 
