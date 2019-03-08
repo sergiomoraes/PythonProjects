@@ -13,8 +13,8 @@ content = BeautifulSoup(response.content, "html.parser")
 
 # tries to identify the specific links under the rls--link class
 for torrent in content.find_all(class_="rls-link link-1080p"):
-    for link in torrent.find_all('a', attrs={'href':re.compile("https")}, title="Torrent Link"):
-        print (link)
+    for link in torrent.find_all('a', attrs={'href':re.compile("^https")}, title="Torrent Link"):
+        print (link.get('href'))
 
 
 
