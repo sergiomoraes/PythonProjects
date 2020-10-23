@@ -1,19 +1,21 @@
-from bs4 import BeautifulSoup
-import urllib3
-import re
-import requests
+import feedparser
+import urllib3, shutil
 
-url = 'http://chpsp/IST/Lists/Release%20Notes/AllItems.aspx'
-r = requests.get(url)
+url = 'http://chpsp/IST/_layouts/listfeed.aspx?List=%7B6FBBF0B5%2D75BF%2D49B1%2DB0F6%2DA7B3C7801857%7D&Source=http%3A%2F%2Fchpsp%2FIST%2FLists%2FRelease%2520Notes%2FAllItems%2Easpx'
 
-soup = BeautifulSoup(r.content, 'lxml')
+c = urllib3.PoolManager()
 
-reportLinks = soup.find_all('a', attrs={'href': re.compile("^/listform")})
-linksList = []
-titlesList = []
+filename = "release-notes-feed.xml"
 
-for link in reportLinks:
+
+d = feedparser.parse('http://chpsp/IST/_layouts/listfeed.aspx?List=%7B6FBBF0B5%2D75BF%2D49B1%2DB0F6%2DA7B3C7801857%7D&Source=http%3A%2F%2Fchpsp%2FIST%2FLists%2FRelease%2520Notes%2FAllItems%2Easpx')
+
+d['feed']['title']
+
+
+
+""" for link in reportLinks:
 	linksList.append(link.get('href'))
 
 for title in reportLinks:
-	titlesList.append(title.get('title'))
+	titlesList.append(title.get('title')) """
